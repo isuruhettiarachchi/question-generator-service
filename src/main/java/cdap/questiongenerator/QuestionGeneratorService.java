@@ -15,15 +15,29 @@ import java.util.List;
 public class QuestionGeneratorService {
     private QuestionTransducer qt;
     private InitialTransformationStep trans;
+    private  QuestionRanker qr = null;
 
     private Tree parsed;
 
     Integer maxLength = 1000;
     boolean justWH = false;
 
+    boolean avoidFreqWords = false;
+    boolean preferWH = false;
+    boolean downweightPronouns = false;
+
+    String modelPath = null;
+
     List<Question> outputQuestionList = new ArrayList<Question>();
 
     public List<SimpleQuestion> generateQuestions(String document) {
+
+        if(modelPath != null){
+            System.err.println("Loading question ranking models from "+modelPath+"...");
+            qr = new QuestionRanker();
+            qr.loadModel(modelPath);
+        }
+
         qt = new QuestionTransducer();
         trans = new InitialTransformationStep();
 
@@ -60,6 +74,13 @@ public class QuestionGeneratorService {
             if(GlobalProperties.getDebug()) System.err.println("Stage 2 Input: "+t.getIntermediateTree().yield().toString());
             qt.generateQuestionsFromParse(t);
             outputQuestionList.addAll(qt.getQuestions());
+        }
+
+        if(qr != null){
+            qr.scoreGivenQuestions(outputQuestionList);
+            boolean doStemming = true;
+            QuestionRanker.adjustScores(outputQuestionList, inputTrees, avoidFreqWords, preferWH, downweightPronouns, doStemming);
+            QuestionRanker.sortQuestions(outputQuestionList, false);
         }
 
         for (Question question: outputQuestionList) {
