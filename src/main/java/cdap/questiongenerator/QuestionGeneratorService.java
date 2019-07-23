@@ -101,7 +101,10 @@ public class QuestionGeneratorService {
 
             SimpleQuestion simpleQuestion = new SimpleQuestion(question.yield(), answer);
 
-            res.add(simpleQuestion);
+            if(answer != null && !AnalysisUtilities.filterGenericWhQuestions(answer)) {
+                res.add(simpleQuestion);
+            }
+
         }
 
         return res;
