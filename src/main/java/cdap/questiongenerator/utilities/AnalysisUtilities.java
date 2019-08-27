@@ -21,6 +21,7 @@ import org.apache.commons.lang.StringUtils;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AnalysisUtilities {
@@ -282,7 +283,7 @@ public class AnalysisUtilities {
             //ex.printStackTrace();
         }
 
-        System.err.println("parsing:"+sentence);
+        System.out.println("parsing:"+sentence);
 
         //if socket server not available, then use a local parser object
         if(parser == null){
@@ -491,6 +492,11 @@ public class AnalysisUtilities {
         //}
 
         return false;
+    }
+
+    public static boolean filterGenericWhQuestions(String answer) {
+        String genericAnswers[] = new String[] {"we", "it", "that", "they", "I", "you", "these", "this", "so"};
+        return Arrays.stream(genericAnswers).parallel().anyMatch(answer::contains);
     }
 
 

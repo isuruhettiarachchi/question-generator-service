@@ -1,27 +1,39 @@
 package cdap.questiongenerator.question;
 
-public class SimpleQuestion {
-    private String question;
-    private String answer;
+import java.util.List;
 
-    public SimpleQuestion(String question, String answer) {
+public class SimpleQuestion {
+    private int questionNo;
+    private String question;
+    private List<Answer> answers;
+
+    public SimpleQuestion(int questionNo, String question, List<Answer> answers) {
+        this.questionNo = questionNo;
         this.question = question;
-        this.answer = answer;
+        this.answers = answers;
     }
 
     public String getQuestion() {
         return question;
     }
 
+    public int getQuestionNo() {
+        return questionNo;
+    }
+
+    public void setQuestionNo(int questionNo) {
+        this.questionNo = questionNo;
+    }
+
     public void setQuestion(String question) {
         this.question = question;
     }
 
-    public String getAnswer() {
-        return answer;
+    public List<Answer> getAnswers() {
+        return answers;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 }

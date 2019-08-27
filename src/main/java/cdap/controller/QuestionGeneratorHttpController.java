@@ -1,14 +1,13 @@
 package cdap.controller;
 
+import cdap.entities.QuestionGeneratorRequest;
+import cdap.entities.Questions;
 import cdap.questiongenerator.QuestionGeneratorService;
-import cdap.questiongenerator.question.SimpleQuestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class QuestionGeneratorHttpController {
@@ -26,7 +25,7 @@ public class QuestionGeneratorHttpController {
     }
 
     @PostMapping("/generate")
-    public List<SimpleQuestion> generateQuestions(@RequestBody String document) {
-        return service.generateQuestions(document);
+    public Questions generateQuestions(@RequestBody QuestionGeneratorRequest request) {
+        return service.generateQuestions(request.getDocument(), request.getLectureId());
     }
 }

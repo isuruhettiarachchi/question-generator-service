@@ -1,5 +1,7 @@
 package cdap.questiongenerator;
 
+import cdap.entities.Questions;
+import cdap.questiongenerator.question.Answer;
 import cdap.questiongenerator.question.Question;
 import cdap.questiongenerator.question.SimpleQuestion;
 import cdap.questiongenerator.transducer.QuestionTransducer;
@@ -30,7 +32,7 @@ public class QuestionGeneratorService {
 
     List<Question> outputQuestionList = new ArrayList<Question>();
 
-    public List<SimpleQuestion> generateQuestions(String document) {
+    public Questions generateQuestions(String document, String lectureId) {
 
         if(modelPath != null){
             System.err.println("Loading question ranking models from "+modelPath+"...");
@@ -44,6 +46,8 @@ public class QuestionGeneratorService {
         System.out.println(document);
 
         List<SimpleQuestion> res = new ArrayList<SimpleQuestion>();
+
+        Questions questions = new Questions(lectureId);
 
         outputQuestionList.clear();
 
@@ -83,7 +87,11 @@ public class QuestionGeneratorService {
             QuestionRanker.sortQuestions(outputQuestionList, false);
         }
 
+        int count = 0;
+
         for (Question question: outputQuestionList) {
+            count++;
+
             if (question.getTree().getLeaves().size() > maxLength) {
                 continue;
             }
@@ -93,18 +101,28 @@ public class QuestionGeneratorService {
             }
 
             Tree ansTree = question.getAnswerPhraseTree();
-            String answer = null;
+            Answer answer = new Answer();
+
+            List<Answer> answers = new ArrayList<Answer>();
 
             if (ansTree != null) {
-                answer = AnalysisUtilities.getCleanedUpYield(question.getAnswerPhraseTree());
+                answer.setValue(AnalysisUtilities.getCleanedUpYield(question.getAnswerPhraseTree()));
+                System.out.println(answer);
+                answers.add(answer);
             }
 
-            SimpleQuestion simpleQuestion = new SimpleQuestion(question.yield(), answer);
+            SimpleQuestion simpleQuestion = new SimpleQuestion(count, question.yield(), answers);
 
-            res.add(simpleQuestion);
+            if(answer.getValue() != null && !AnalysisUtilities.filterGenericWhQuestions(answer.getValue())) {
+                res.add(simpleQuestion);
+            }
+
         }
 
-        return res;
+        questions.setQuestions(res);
+        questions.setCount(count);
+
+        return questions;
     }
 
 }
