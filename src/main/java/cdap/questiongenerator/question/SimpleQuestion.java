@@ -4,17 +4,32 @@ import java.util.List;
 
 public class SimpleQuestion {
     private int questionNo;
-    private String question;
+    private String questionBody;
     private List<Answer> answers;
+    private String correctAnswer;
 
-    public SimpleQuestion(int questionNo, String question, List<Answer> answers) {
+    public SimpleQuestion(int questionNo, String questionBody, List<Answer> answers, String correctAnswer) {
         this.questionNo = questionNo;
-        this.question = question;
+        this.questionBody = questionBody;
         this.answers = answers;
+        this.correctAnswer = correctAnswer;
+    }
+//    public SimpleQuestion(int questionNo, String questionBody, List<Answer> answers) {
+//        this.questionNo = questionNo;
+//        this.questionBody = questionBody;
+//        this.answers = answers;
+//    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    public String getQuestion() {
-        return question;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    public String getQuestionBody() {
+        return questionBody;
     }
 
     public int getQuestionNo() {
@@ -25,8 +40,8 @@ public class SimpleQuestion {
         this.questionNo = questionNo;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setQuestionBody(String questionBody) {
+        this.questionBody = questionBody;
     }
 
     public List<Answer> getAnswers() {

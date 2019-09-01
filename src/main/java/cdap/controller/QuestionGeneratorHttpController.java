@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.CompletableFuture;
+
 @RestController
 public class QuestionGeneratorHttpController {
 
@@ -25,7 +27,12 @@ public class QuestionGeneratorHttpController {
     }
 
     @PostMapping("/generate")
-    public Questions generateQuestions(@RequestBody QuestionGeneratorRequest request) {
-        return service.generateQuestions(request.getDocument(), request.getLectureId());
+    public String generateQuestions(@RequestBody QuestionGeneratorRequest request) {
+        CompletableFuture.runAsync(() -> {
+            service.generateQuestions(request.getDocument(), request.getLectureId());
+        });
+
+        return "Request is processing";
+//        return service.generateQuestions(request.getDocument(), request.getLectureId());
     }
 }

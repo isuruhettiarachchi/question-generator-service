@@ -201,7 +201,7 @@ public class SentenceSimplifier {
         orig.setIntermediateTree(sentence.deeperCopy());
 
         //if the input contains any UCP or other odd nodes, then just return the original sentence
-        //such nodes indicate that the parse failed, or at least that our system will likely produce bad output
+        //such nodes indicate that the parse failed, or at least that system will likely produce bad output
         if(uglyParse(sentence)){
             treeList.add(orig);
             return treeList;
