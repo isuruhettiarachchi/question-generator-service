@@ -213,7 +213,9 @@ public class SentenceSimplifier {
 
         List<Question> extracted = new ArrayList<Question>();
 
-        //for each nested element in the INPUT... (nested elements include finite verbs, non-restrictive relative clauses, appositives, conjunction of VPs, conjunction of clauses, participial phrases)
+        //for each nested element in the INPUT... (nested elements include finite verbs,
+        // non-restrictive relative clauses, appositives, conjunction of VPs, conjunction of clauses,
+        // participial phrases)
         //transform the nested element into a declarative sentence (preserving tense), removing conjunctions, etc.
         extracted.add(current);
         extractSubordinateClauses(extracted, orig);
