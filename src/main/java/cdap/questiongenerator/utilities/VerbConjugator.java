@@ -22,7 +22,9 @@ public class VerbConjugator {
         baseFormCountMap = new HashMap<String, Long>();
         conjugationMap = new HashMap<String, String>();
         try{
-            JWNL.initialize(new FileInputStream("config"+ File.separator+"file_properties.xml"));
+            JWNL.initialize(new FileInputStream("src"+ File.separator+"main"+ File.separator+"resources"+ File.separator+"config"+ File.separator+"file_properties.xml"));
+//            JWNL.initialize(ClassLoader.getSystemResourceAsStream("resources/config/file_properties.xml"));
+            System.out.println("JWNL FIles works ******************************");
         }catch(Exception e){
             e.printStackTrace();
         }

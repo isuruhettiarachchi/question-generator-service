@@ -29,6 +29,60 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>edu.stanford.nlp</groupId>-->
+<!--            <artifactId>stanford-parser</artifactId>-->
+<!--            <version>2.0.2</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.arkref</groupId>
+            <artifactId>com.arkref</artifactId>
+            <version>0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.commans.lang</groupId>
+            <artifactId>com.commons.lang</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jwnl</groupId>
+            <artifactId>com.jwnl</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.commons.logging</groupId>
+            <artifactId>com.commons.logging</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tagger</groupId>
+            <artifactId>com.tagger</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.weka</groupId>
+            <artifactId>com.weka</artifactId>
+            <version>3.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.standford</groupId>
+            <artifactId>com.standoford.parser</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
