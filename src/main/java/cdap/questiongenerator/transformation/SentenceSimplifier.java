@@ -201,7 +201,7 @@ public class SentenceSimplifier {
         orig.setIntermediateTree(sentence.deeperCopy());
 
         //if the input contains any UCP or other odd nodes, then just return the original sentence
-        //such nodes indicate that the parse failed, or at least that our system will likely produce bad output
+        //such nodes indicate that the parse failed, or at least that system will likely produce bad output
         if(uglyParse(sentence)){
             treeList.add(orig);
             return treeList;
@@ -213,7 +213,9 @@ public class SentenceSimplifier {
 
         List<Question> extracted = new ArrayList<Question>();
 
-        //for each nested element in the INPUT... (nested elements include finite verbs, non-restrictive relative clauses, appositives, conjunction of VPs, conjunction of clauses, participial phrases)
+        //for each nested element in the INPUT... (nested elements include finite verbs,
+        // non-restrictive relative clauses, appositives, conjunction of VPs, conjunction of clauses,
+        // participial phrases)
         //transform the nested element into a declarative sentence (preserving tense), removing conjunctions, etc.
         extracted.add(current);
         extractSubordinateClauses(extracted, orig);

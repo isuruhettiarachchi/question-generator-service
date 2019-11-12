@@ -283,7 +283,7 @@ public class AnalysisUtilities {
             //ex.printStackTrace();
         }
 
-        System.err.println("parsing:"+sentence);
+        System.out.println("parsing:"+sentence);
 
         //if socket server not available, then use a local parser object
         if(parser == null){
