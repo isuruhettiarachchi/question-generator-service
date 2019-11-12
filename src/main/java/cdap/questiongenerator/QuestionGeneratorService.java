@@ -39,18 +39,29 @@ public class QuestionGeneratorService {
 
     public void generateQuestions(String document, String lectureId) {
 
+        System.out.println(document);
+
         if(modelPath != null){
+            System.out.println("Model not null");
             System.err.println("Loading question ranking models from "+modelPath+"...");
             qr = new QuestionRanker();
             qr.loadModel(modelPath);
+
         }
+
+        System.out.println("Flag1");
 
         qt = new QuestionTransducer();
         trans = new InitialTransformationStep();
 
-        String[] text = document.split(">");
+        System.out.println("Flag 2");
 
-        System.out.println(text[1]);
+//        String[] text = document.split(">");
+        String text = document.replaceAll("[^a-zA-Z0-9.,& ()-]", "");
+
+        System.out.println("Flag 3");
+
+        System.out.println(text);
 
         List<SimpleQuestion> res = new ArrayList<SimpleQuestion>();
 
@@ -64,7 +75,7 @@ public class QuestionGeneratorService {
 
         long startTime = System.currentTimeMillis();
 
-        List<String> sentences = AnalysisUtilities.getSentences(text[1]);
+        List<String> sentences = AnalysisUtilities.getSentences(text);
 
         List<Tree> inputTrees = new ArrayList<Tree>();
 

@@ -11,7 +11,9 @@ public class GlobalProperties {
 
     public static Properties getProperties(){
         if(properties == null){
+            System.out.println("Flag: Read properties file");
             String defaultPath = "src"+ File.separator+"main"+ File.separator+"resources"+ File.separator+"config"+ File.separator+"QuestionTransducer.properties";
+            System.out.println("Flag: Read properties file completed");
             loadProperties(defaultPath);
         }
         return properties;

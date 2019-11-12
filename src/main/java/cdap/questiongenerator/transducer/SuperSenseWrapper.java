@@ -22,7 +22,7 @@ public class SuperSenseWrapper {
     private SuperSenseWrapper(){
         sst = null;
 
-        DiscriminativeTagger.loadProperties(GlobalProperties.getProperties().getProperty("propertiesFilePath", "config"+ File.separator+"QuestionTransducer.properties"));
+        DiscriminativeTagger.loadProperties(GlobalProperties.getProperties().getProperty("propertiesFilePath", "src"+ File.separator+"main"+ File.separator+"resources"+ File.separator+"config"+ File.separator+"QuestionTransducer.properties"));
 
     }
 
