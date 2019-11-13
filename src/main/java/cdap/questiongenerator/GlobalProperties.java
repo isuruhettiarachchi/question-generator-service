@@ -25,7 +25,7 @@ public class GlobalProperties {
 
         properties = new Properties();
         try{
-            properties.load(new FileInputStream(propertiesFile));
+            properties.load(GlobalProperties.class.getResourceAsStream("/config/QuestionTransducer.properties"));
         }catch(Exception e){
             e.printStackTrace();
             System.exit(0);
