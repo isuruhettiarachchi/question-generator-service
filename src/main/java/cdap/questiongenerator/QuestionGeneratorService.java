@@ -134,7 +134,8 @@ public class QuestionGeneratorService {
     }
 
     public static void sendQuestions(Questions questions, String id) {
-        final String uri = "http://localhost:3000/v1/metadata/"+id+"/questions";
+        final String uri = "http://15.206.33.173:3000/v1/metadata/"+id+"/questions";
+//        final String uri = "http://localhost:3000/v1/metadata/"+id+"/questions";
 
         RestTemplate restTemplate = new RestTemplate();
 
